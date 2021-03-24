@@ -1,8 +1,7 @@
 {
 	"pages": [
         {
-            "path" : "pages/home/home"                                                                                                 
-        },
+            "path" : "pages/home/home"                                                    },
         {
             "path" : "pages/cart/cart"           
         },
