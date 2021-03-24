@@ -13,9 +13,23 @@
             "path" : "pages/my/my"
         }
     ],
+  "subPackages":[
+     {
+        "root": "subpkg",
+        "pages": [{
+                    "path" : "goods_detail/goods_detail",
+                    "style" :                                                                                    
+                {
+                    "navigationBarTitleText": "",
+                    "enablePullDownRefresh": false
+                }             
+                }
+            ]
+     }
+  ],
 	"globalStyle": {
 		"navigationBarTextStyle": "white",
-		"navigationBarTitleText": "优购商城",
+		"navigationBarTitleText": "微店购",
 		"navigationBarBackgroundColor": "#C00000",
 		"backgroundColor": "#F8F8F8",
 		"app-plus": {
