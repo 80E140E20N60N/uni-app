@@ -1,6 +1,6 @@
 <template>
 	<view>
-		cate
+		列表
 	</view>
 </template>
 
@@ -10,10 +10,7 @@
 			return {
 				
 			};
-		},
-    methods:{
-     
-    }
+		}
 	}
 </script>
 
