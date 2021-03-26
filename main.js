@@ -4,7 +4,7 @@ import {$http} from '@escook/request-miniprogram'
 uni.$http=$http
 $http.baseUrl='https://www.uinav.com'
 
-$http.beforeRequset=function(options){
+$http.beforeRequest=function(options){
     uni.showLoading({
       title:'加载中...'
     })

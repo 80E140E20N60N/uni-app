@@ -84,7 +84,7 @@
         if (meta.status !== 200) return uni.$showMsg()
         this.searchList = message
         this.saveKw()
-        console.log(message, meta)
+        // console.log(message, meta)
       },
       gotoDetail(goods_id) {
         uni.navigateTo({
