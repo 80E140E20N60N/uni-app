@@ -21,7 +21,7 @@
         </view>
       </view>
       <view class="yf">
-        快递：免运费
+        快递：免运费 
       </view>      
     </view>
     <!-- 商品详情 -->
@@ -34,19 +34,20 @@
 </template>
 
 <script>
+ import {mapGetters,mapMutations} from 'vuex'
 	export default {
 		data() {
 			return {
 				goods_info:{},
         options:[
           {
-            icons:'shop',
+            icon:'shop',
             text:'店铺',
           },
           {
-            icons:'cart',
+            icon:'cart',
             text:'购物车',
-            info:2
+            info:0
           }          
         ],
         buttonGroup:[
@@ -63,16 +64,36 @@
         ]
 			};
 		},
+    computed:{
+     ...mapGetters('m_cart', ['total'])
+    },
     onLoad(options) {
       const {goods_id} = options
       this.getGoodsDetail(goods_id)
     },
     methods:{
+      ...mapMutations('m_cart',['addCart']),
       buttonClick(e){
         console.log(e)
+        if(e.content.text==='加入购物车'){
+          const goods={
+            goods_id:this.goods_info.goods_id,
+            goods_name:this.goods_info.goods_name,
+            goods_price:this.goods_info.goods_price,
+            goods_small_logo:this.goods_info.goods_small_logo,
+            goods_count:1,
+            goods_state:true,            
+          }
+          this.addCart(goods)
+        }
+        if(e.content.text==='立即购买'){
+          uni.switchTab({
+            url:'/pages/cart/cart'
+          })
+        }
       },
       onClick(e){
-        console.log(e)
+        // console.log(e)
         if(e.content.text==='购物车'){
           uni.switchTab({
             url:'/pages/cart/cart'
@@ -87,9 +108,18 @@
       },
       async getGoodsDetail(goods_id){
         const {data:{message,meta}} =await uni.$http.get('/api/public/v1/goods/detail',{goods_id})
-        console.log(message,meta)
+        // console.log(message,meta)
         if(meta.status!==200) return uni.$showMsg()
         this.goods_info=message
+      }
+    },
+    watch:{
+      total:{
+        handler(newVal){
+          const findRes = this.options.find(e=>e.text==='购物车')
+          findRes.info=newVal
+        },
+        immediate:true
       }
     }
 	}

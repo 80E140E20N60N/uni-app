@@ -29,7 +29,9 @@
 </template>
 
 <script>
+  import TabBarBadge from '../../mixins/tabbar-badge.js'
   export default {
+    mixins:[TabBarBadge],
     data() {
       return {
         // 窗口的可用高度 = 屏幕高度 - navigationBar高度 - tabBar 高度
